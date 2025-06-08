@@ -1,61 +1,77 @@
-# AWS Supporter Chrome Extension  
-**Your AI-powered assistant for seamless AWS navigation and task automation.**
+# AWS Guide Chrome Extension
 
-## Table of Contents  
-1. [Introduction](#introduction)  
-2. [Features](#features)  
-3. [Installation](#installation)  
-4. [Usage](#usage)  
-5. [Development Setup](#development-setup)  
-6. [Contributing](#contributing)  
-7. [License](#license)
+The AWS Guide Chrome Extension helps users navigate and understand the AWS console by providing step-by-step guidance based on user queries. It leverages AI to interpret tasks and highlight relevant elements on the page.
 
----
+## Installation
 
-## Introduction  
-The AWS Supporter Chrome Extension is designed to simplify navigation and task execution on AWS Management Console. With AI assistance, it provides step-by-step guidance for commonly used tasks, such as creating EC2 instances or setting up S3 buckets. Whether you're a beginner or a seasoned AWS user, this tool enhances productivity by offering intuitive, interactive help.
+1.  **Download or Clone the Repository:**
+    *   If you have git installed, clone the repository using:
+        ```
+        git clone <repository_url>
+        ```
+        (Replace `<repository_url>` with the actual URL where this code is hosted).
+    *   Alternatively, download the source code as a ZIP file and extract it to a local folder.
 
----
+2.  **Open Chrome Extensions Page:**
+    *   Open Google Chrome.
+    *   Navigate to `chrome://extensions`. You can type this directly into your address bar and press Enter.
 
-## Features  
-- **Task Automation:** Highlight buttons and guide users through AWS workflows.  
-- **AI-Powered Support:** Natural language commands to navigate and perform AWS tasks.  
-- **Dynamic Context Awareness:** Automatically detect the current AWS page.  
-- **Step-by-Step Guidance:** Interactive highlights and instructions for complex workflows.  
+3.  **Enable Developer Mode:**
+    *   In the top right corner of the Extensions page, find the "Developer mode" toggle and switch it on.
 
----
+4.  **Load the Extension:**
+    *   Once Developer mode is enabled, you will see new buttons appear. Click on the "**Load unpacked**" button.
+    *   A file dialog will open. Navigate to the directory where you cloned or extracted the extension's source code.
+    *   Select the root folder of the extension (the one containing `manifest.json`).
+    *   Click "Select Folder" (or "Open").
 
-## Installation  
-To install the extension:  
-1. Clone the repository:  
-```bash
+5.  **Verify Installation:**
+    *   The "AWS Guide" extension should now appear in your list of installed extensions.
+    *   You should also see its icon in the Chrome toolbar (usually to the right of the address bar). You might need to click the puzzle piece icon (Extensions) to pin it.
 
-   git clone https://github.com/yourusername/aws-supporter-extension.git
-```
-2. Open Google Chrome and navigate to `chrome://extensions`.
-3. Enable **Developer Mode** (top right corner).  
-4. Click **Load unpacked** and select the project folder.  
-5. The extension should now appear in your browser toolbar.
+## Features (Planned & Implemented)
 
----
+*   **Task Input:** Users can type a task they want to accomplish in the AWS console via the extension popup.
+*   **AI-Powered Guidance:** (Currently Mocked) User tasks are sent to an AI (like Gemini) to get a sequence of steps.
+*   **On-Page Highlighting:** The extension highlights relevant UI elements on the AWS console page for each step.
+*   **Step-by-Step Instructions:** Clear descriptions are provided for each action.
+*   **Error Feedback:** User-friendly messages for errors (e.g., API issues, elements not found).
 
-## Usage  
-1. Click on the extension icon in the toolbar.  
-2. Enter a command (e.g., "How do I create an EC2 instance?").  
-3. Follow the highlighted steps or instructions provided.  
+## Development
 
----
+This extension is built using standard web technologies: HTML, CSS, and JavaScript.
 
-## Development Setup  
-To set up the project for development:  
-1. Ensure you have **Node.js** installed.  
-2. Install dependencies:  
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-  ```bash
-  npm run dev
-  ```
-4. Make changes to the extension code (e.g., content_scripts or popup).
-4. Reload the extension in Chrome to see updates.
+**Key Files:**
+
+*   `manifest.json`: Defines the extension's properties, permissions, and scripts.
+*   `popup.html` / `popup.css` / `popup.js`: Manages the extension's popup UI and interaction.
+*   `background.js`: The service worker, handles communication with the AI API and coordinates with content scripts.
+*   `content.js` / `content.css`: Injected into AWS console pages to highlight elements and display guidance.
+
+**API Key Setup:**
+
+To use the actual Gemini AI, you'll need an API key.
+1.  Open `background.js`.
+2.  Replace `"YOUR_API_KEY_HERE"` with your actual Gemini API key.
+    ```javascript
+    const GEMINI_API_KEY = "YOUR_ACTUAL_GEMINI_API_KEY";
+    ```
+3.  **Important:** Do not commit your real API key to a public repository. If you plan to share or store the code, consider environment variables or other secure methods for key management if building the extension from source regularly. For local development and loading as an unpacked extension, direct replacement is straightforward.
+
+## Usage
+
+1.  Click the AWS Guide extension icon in your Chrome toolbar.
+2.  The popup will appear. Type the task you want to perform (e.g., "launch a new EC2 instance", "create an S3 bucket").
+3.  Click "Submit".
+4.  The extension will process your request and, if successful, start highlighting elements on the active AWS console page, showing you the first step.
+    (Note: Currently, only the first step is shown. Multi-step navigation is planned).
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or find bugs, please open an issue or submit a pull request.
+
+(Further details on contribution guidelines can be added here).
+
+## License
+
+(To be determined - e.g., MIT License)
