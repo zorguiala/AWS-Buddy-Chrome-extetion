@@ -1,0 +1,19 @@
+.aws-guide-highlight {
+  border: 3px solid red !important;
+  background-color: yellow !important;
+  box-shadow: 0 0 10px yellow !important;
+  transition: all 0.3s ease-in-out !important;
+  z-index: 9999 !important; /* Ensure it's on top */
+  filter: brightness(1.2) !important; /* Make it a bit brighter */
+}
+
+/* Optional: Style for a description tooltip, if you implement one later */
+.aws-guide-description-tooltip {
+  position: absolute;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  z-index: 10000; /* Ensure tooltip is on top of the highlight */
+}
